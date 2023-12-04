@@ -1,41 +1,39 @@
-<?php get_header();?>
+<?php get_header(); ?>
 
-    <!-- Page Content -->
-    <div class="container">
+<!-- Page Content -->
+<div class="container">
 
-      <h1 class="my-4"><?php __( 'Our latest blog articles', 'wpl22' );?></h1>
-<div class="row">
-        <?php $n = 1; //$flat_post_arr  = ['','','','',''];?>
-        <?php if (have_posts()):while (have_posts()):the_post(); ?>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-          <?php if(has_post_thumbnail()):?><a href="<?php the_permalink(); ?>">
-            <img class="card-img-top img-fluid " src="<?=the_post_thumbnail_url();?>" alt="<?php the_title(); ?>">
-        </a><?php endif;?>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-              </h4>
-              <p class="card-text"><?php the_excerpt(); ?></p>
+  <h1 class="my-4"><?php echo  __('Our latest blog articles', TD); ?></h1>
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="content">
+        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+            <div class="row border-bottom mb-2 mt-2 pb-4 pt-4 pb-2">
+              <div class="col-md-2"><?php if (has_post_thumbnail()) { ?>
+                  <?php $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full'); ?>
+                  <a href="<?= the_permalink(); ?>" class="entry__thumb-link pt-2 pb-2">
+                    <img src="<?php echo $image[0]; ?>" class="img-fluid" /></a><?php } ?>
+              </div>
+              <div class="col-md-10">
+                <h5 class="pt-3 pb-2 heading-sm-b"><a href="<?= the_permalink(); ?>" class="the-link"><?php the_title(); ?></a></h5>
+                <div class="pt-2 pb-2"><?php the_excerpt(); ?></div>
+                <?php get_template_part('inc/meta_info'); ?>
+              </div>
             </div>
-          </div>
-        </div>
-      <?php
-		$n++;
-    endwhile; wp_reset_postdata();
-endif;
-?>
- 
-      </div>
-      <!-- /.row -->
-	        <div class="row pb-2 pl-5 pr-5 ml-5 mr-5">
-        <div class="col">
-          <nav class="pgn">
-            <?php wplight_pagination();?>
-          </nav>
+        <?php endwhile;
+        endif; ?>
+        <div class="row pt-2 pb-2">
+          <div class="col-md-12"><?php wplight_pagination(); ?></div>
         </div>
       </div>
-	  
+    </div>
+  </div>
+
+  <!-- /.row -->
+
+
 </div>
-         <!-- Footer -->
-    <?php get_footer();?>
+<!-- Footer -->
+<?php get_footer(); ?>

@@ -8,3 +8,6 @@ Text Domain: wpl
 Version: 0.1
 Version Date: 04 Dec, 2023
 * * * * * * * * * */
+.meta-info label {
+    display: none;
+}

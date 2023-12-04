@@ -16,3 +16,4 @@ a{text-decoration: none;}
 .wpcf7-form.init p label { min-width: 85%;}
 .wpcf7-form.init p label span, .wpcf7-form.init p label span *{ min-width: 100%;width: 100%;}
 .wpcf7-form.init p label span *{width: 100%;padding:5px 8px;}
+span.page-numbers.current {  color: #FFF;  background: #337ab7;}

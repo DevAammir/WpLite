@@ -1,4 +1,4 @@
-<?php get_header(); ?> <?php global $options; global $social_arr;?>
+<?php get_header(); ?> 
 <div class="container-fluid" id="single">
   <div class="row mr-0 pl-5  pr-5 pt-5 p-5">
     <div class="container">
@@ -13,7 +13,7 @@
                   <?php custom_serach_form();?>                    
                 </div>
             </div>
-             <?php edit_post_link('edit', '<p>', '</p><br/>'); ?>
+             <?php //edit_post_link('edit', '<p>', '</p><br/>'); ?>
           </div>
         </div>
       </div>

@@ -1,46 +1,49 @@
 <?php
+
 /***
  * ADDING CSS AND JS 
  * THE WP WAY
  * */
 $textdomain = 'wpl';
 define('TD', $textdomain);
-function theme_enqueue_scripts() {
+function theme_enqueue_scripts()
+{
     //css
-    wp_register_style( 'Font_Awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' );
+    wp_register_style('Font_Awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css');
     wp_enqueue_style('Font_Awesome');
-    
-    wp_register_style( 'bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' );
+
+    wp_register_style('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
     wp_enqueue_style('bootstrap');
-    
-    wp_register_style( 'theme-style', get_template_directory_uri().'/css/theme.css' );
+
+    wp_register_style('theme-style', get_template_directory_uri() . '/css/theme.css');
     wp_enqueue_style('theme-style');
 
-    wp_register_style( 'style-css', get_template_directory_uri().'/style.css' );
+    wp_register_style('style-css', get_template_directory_uri() . '/style.css');
     wp_enqueue_style('style-css');
-    
+
     //js
     wp_enqueue_script('jquery');
     // wp_register_script('bootstrap', get_template_directory_uri() . '', array('jquery'));
     wp_register_script('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', array('jquery'));
-   wp_enqueue_script( 'bootstrap' );
+    wp_enqueue_script('bootstrap');
 }
-if(!is_admin()):
-add_action( 'init', 'theme_enqueue_scripts' );
+if (!is_admin()) :
+    add_action('init', 'theme_enqueue_scripts');
 endif;
 /* * *********
  * ADDING MENU
  */
-include( get_template_directory() . '/inc/walker.php');
-include( get_template_directory() . '/inc/walker_mobile.php');
+include(get_template_directory() . '/inc/walker.php');
+include(get_template_directory() . '/inc/walker_mobile.php');
 add_theme_support('menus');
 
-function register_theme_menus() {
+function register_theme_menus()
+{
     register_nav_menus(
-            array('primary_menu' => _('Primary Menu'))
+        array('primary_menu' => _('Primary Menu'))
     );
     register_nav_menus(
-            array('secondary_menu' => _('Secondary Menu'))
+        array('secondary_menu' => _('Secondary Menu'))
     );
 }
 add_action('init', 'register_theme_menus');
@@ -50,7 +53,8 @@ add_action('init', 'register_theme_menus');
  */
 
 //PAGE SLUG BODY CLASS
-function add_slug_body_class($classes) {
+function add_slug_body_class($classes)
+{
     global $post;
     if (isset($post)) {
         $classes[] = $post->post_type . '-' . $post->post_name;
@@ -65,11 +69,11 @@ add_filter('body_class', 'add_slug_body_class');
  */
 
 add_filter('use_block_editor_for_post', '__return_false', 10);
-add_theme_support( 'block-templates' );
+add_theme_support('block-templates');
 // Disables the block editor from managing widgets in the Gutenberg plugin.
-add_filter( 'gutenberg_use_widgets_block_editor', '__return_false' );
+add_filter('gutenberg_use_widgets_block_editor', '__return_false');
 // Disables the block editor from managing widgets.
-add_filter( 'use_widgets_block_editor', '__return_false' );
+add_filter('use_widgets_block_editor', '__return_false');
 
 
 
@@ -78,15 +82,16 @@ add_filter( 'use_widgets_block_editor', '__return_false' );
  * WIDGETS
  */
 
-function create_widget($name, $id, $description) {
+function create_widget($name, $id, $description)
+{
     register_sidebar(array(
         'name' => __($name),
         'id' => $id,
         'description' => __($description),
         'before_widget' => '',
         'after_widget' => '',
-//            'before_title' => '',
-//            'after_title' => ''
+        //            'before_title' => '',
+        //            'after_title' => ''
         'before_title' => '<h4 class="widget-title">',
         'after_title' => '</h4>'
     ));
@@ -126,7 +131,8 @@ add_theme_support('post-thumbnails');
  */
 add_action('admin_enqueue_scripts', 'wplite_add_color_picker');
 
-function wplite_add_color_picker($hook) {
+function wplite_add_color_picker($hook)
+{
 
     if (is_admin()) {
 
@@ -140,17 +146,20 @@ function wplite_add_color_picker($hook) {
 
 add_action('admin_footer', 'colorPicker_scripts');
 
-function colorPicker_scripts() {
-    ?>
-    <script>(function ($) {
+function colorPicker_scripts()
+{
+?>
+    <script>
+        (function($) {
 
             // Add Color Picker to all inputs that have 'color-field' class
-            $(function () {
+            $(function() {
                 $('.color-field').wpColorPicker();
             });
 
-        })(jQuery);</script>
-    <?php
+        })(jQuery);
+    </script>
+<?php
 
 }
 
@@ -165,7 +174,8 @@ remove_filter('the_excerpt', 'wpautop');
 /* * *********
  * NUMBERED PAGINATION
  */
-function wplight_pagination() {
+function wplight_pagination()
+{
     echo "<style>  .pagination a, .pagination span {    position: relative;    float: left;    padding: 6px 12px;    margin-left: -1px;    line-height: 1.42857143;    color: #337ab7;    text-decoration: none;    background-color: #fff;    border: 1px solid #ddd;}</style>";
     global $wp_query;
     $big = 999999999; // need an unlikely integer
@@ -183,8 +193,9 @@ add_shortcode('related_posts', 'related_posts');
  *  CUSTOM SERCH FORM
  * ** */
 
-function custom_serach_form() {
-    ?>
+function custom_serach_form()
+{
+?>
     <form role="search" method="get" class="search-form" action="<?php echo home_url('/'); ?>">
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Type Something...." value="<?php echo get_search_query() ?>" name="s">
@@ -203,7 +214,8 @@ add_shortcode('wpl_search', 'custom_serach_form');
  * * */
 add_action('admin_head', 'pagebg_custom_css');
 
-function pagebg_custom_css() {
+function pagebg_custom_css()
+{
     echo '<style>
     .special, .special * {background:#EEE;} 
   </style>';
@@ -214,15 +226,15 @@ function pagebg_custom_css() {
  */
 
 remove_action('wp_head', 'wp_generator');
-remove_action( 'wp_head', 'rsd_link' );
-remove_action( 'wp_head', 'wlwmanifest_link' );
-remove_action( 'wp_head', 'wp_generator' );
-remove_action( 'wp_head', 'start_post_rel_link' );
-remove_action( 'wp_head', 'index_rel_link' );
-remove_action( 'wp_head', 'adjacent_posts_rel_link' );
+remove_action('wp_head', 'rsd_link');
+remove_action('wp_head', 'wlwmanifest_link');
+remove_action('wp_head', 'wp_generator');
+remove_action('wp_head', 'start_post_rel_link');
+remove_action('wp_head', 'index_rel_link');
+remove_action('wp_head', 'adjacent_posts_rel_link');
 remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
-remove_action( 'wp_head', 'bs_shortcodes-css' );
-remove_action( 'wp_head', 'bs_bootstrap-css' );
+remove_action('wp_head', 'bs_shortcodes-css');
+remove_action('wp_head', 'bs_bootstrap-css');
 remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
 remove_action('wp_head', 'start_post_rel_link', 10, 0);
 remove_action('wp_head', 'feed_links', 2);
@@ -233,7 +245,8 @@ remove_action('wp_head', 'parent_post_rel_link', 10, 0);
  * * ADDING BLOG HOME TO NAVIGATION IF CREATING BLOG
  * * */
 
-function childtheme_menu_args($args) {
+function childtheme_menu_args($args)
+{
     $args = array(
         'show_home' => 'Home',
         'sort_column' => 'menu_order',
@@ -273,10 +286,11 @@ add_filter('wp_page_menu_args', 'childtheme_menu_args');
 /////////////////////////////////////////
 // CATEGORY ID IN BODY AND POST CLASS
 ////////////////////////////////
-function category_id_class($classes) {
+function category_id_class($classes)
+{
     global $post;
     foreach ((get_the_category($post->ID)) as $category)
-        $classes [] = 'cat-' . $category->cat_ID . '-id';
+        $classes[] = 'cat-' . $category->cat_ID . '-id';
     return $classes;
 }
 
@@ -286,7 +300,8 @@ add_filter('body_class', 'category_id_class');
 ////////////////////////////
 // ESCAPE HTML ENTITIES IN COMMENTS
 ///////////////////////////
-function encode_code_in_comment($source) {
+function encode_code_in_comment($source)
+{
     $encoded = preg_replace_callback('/<code>(.*?)<\/code>/ims', create_function('$matches', '$matches[1] = preg_replace(array("/^[\r|\n]+/i", "/[\r|\n]+$/i"), "", $matches[1]); 
 	return "<code>" . htmlentities($matches[1]) . "</code>";'), $source);
     if ($encoded)
@@ -298,28 +313,32 @@ function encode_code_in_comment($source) {
 add_filter('pre_comment_content', 'encode_code_in_comment');
 
 //
-function show_phone() {
+function show_phone()
+{
     global $options;
     return $options['phone'] . '!';
 }
 
 add_shortcode('phone', 'show_phone');
 
-function show_email() {
+function show_email()
+{
     global $options;
     return $options['email'];
 }
 
 add_shortcode('site_email', 'show_email');
 
-function show_addr() {
+function show_addr()
+{
     global $options;
     return $options['address'];
 }
 
 add_shortcode('address', 'show_addr');
 
-function show_map() {
+function show_map()
+{
     global $options;
     return $options['map'];
 }
@@ -329,42 +348,48 @@ add_shortcode('map', 'show_map');
 /**
  * SOCIAL MEDIA LINKS SHORTCODES 
  * * */
-function fb() {
+function fb()
+{
     global $options;
     return $options['facebook'];
 }
 
 add_shortcode('facebook', 'fb');
 
-function tw() {
+function tw()
+{
     global $options;
     return $options['twitter'];
 }
 
 add_shortcode('twitter', 'tw');
 
-function instagram() {
+function instagram()
+{
     global $options;
     return $options['instagram'];
 }
 
 add_shortcode('instagram', 'instagram');
 
-function pinterest() {
+function pinterest()
+{
     global $options;
     return $options['pinterest'];
 }
 
 add_shortcode('pinterest', 'pinterest');
 
-function youtube() {
+function youtube()
+{
     global $options;
     return $options['youtube'];
 }
 
 add_shortcode('youtube', 'youtube');
 
-function gp() {
+function gp()
+{
     global $options;
     return $options['google-plus'];
 }
@@ -388,16 +413,18 @@ function pagebg_custom_css() {
 
 /* CUSTOM EXCERPT LENGTH */
 
-function custom_excerpt_length($length) {
-    return 30;
+function custom_excerpt_length($length)
+{
+    return 30;//make this dynamic.
 }
 
-//add_filter('excerpt_length', 'custom_excerpt_length');
+add_filter('excerpt_length', 'custom_excerpt_length');
 
 /* * **
   REMOVE [] FROM EXCERPT:
  * * */
-function new_excerpt_more( $more ) {
+function new_excerpt_more($more)
+{
     return '';
 }
 add_filter('excerpt_more', 'new_excerpt_more');
@@ -405,24 +432,51 @@ add_filter('excerpt_more', 'new_excerpt_more');
 //add_filter('excerpt_more', 'new_excerpt_more');
 /***
  * Set post views count using post meta, NOTE: BETA VERSION NEEDS IMPROVEMENT
- * ****/ 
+ * ****/
 
-function the_post_views() {
-	
-	$postID = get_the_ID(); 
-  $countKey = 'post_views_count';
-  $count = get_post_meta($postID, $countKey, true);
-  if ($count == '') {
-      $count = 0;
-      delete_post_meta($postID, $countKey);
-      add_post_meta($postID, $countKey, '0');
-  } else {
-      $count++;
-      update_post_meta($postID, $countKey, $count);
-  }
-     
-	$views = get_post_meta($postID , $countKey, true);  
-echo $views ;
-	
+function the_post_views()
+{
+
+    $postID = get_the_ID();
+    $countKey = 'post_views_count';
+    $count = get_post_meta($postID, $countKey, true);
+    if ($count == '') {
+        $count = 0;
+        delete_post_meta($postID, $countKey);
+        add_post_meta($postID, $countKey, '0');
+    } else {
+        $count++;
+        update_post_meta($postID, $countKey, $count);
+    }
+
+    $views = get_post_meta($postID, $countKey, true);
+    echo $views;
 }
 
+
+/**
+ * Display the formatted date for a given post.
+ *
+ * @param int $id The ID of the post.
+ * @throws None
+ * @return void
+ */
+function _wpl_display_date($id)
+{
+    $post_date = get_the_date('j F, Y', $id);
+    $day_link = get_day_link(get_post_time('Y'), get_post_time('m'), get_post_time('j'));
+    $month_link = get_month_link(get_post_time('Y'), get_post_time('m'));
+    $year_link = get_year_link(get_post_time('Y')); ?>
+    <span class="date-full"><a class="date-day" href="<?php echo esc_url($day_link); ?>"> <?php echo get_the_date('j'); ?> </a> <a class="date-month" href="<?php echo esc_url($month_link); ?>"> <?php echo get_the_date('F'); ?></a>, <a class="date-year" href="<?php echo esc_url($year_link); ?>"> <?php echo get_the_date('Y'); ?></a> </span>
+<?php
+}
+
+function _wpl_author_info(){
+            // Get author information
+            $author_id = get_the_author_meta('ID');
+            $author_name = get_the_author();
+            $author_email = get_the_author_meta('user_email');
+            $author_description = get_the_author_meta('description');
+            $author_url = get_author_posts_url($author_id);
+            echo '<a class="the_author" href="' . esc_url($author_url) . '">' . esc_html($author_name) . '</a>';
+}

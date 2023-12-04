@@ -10,7 +10,7 @@ get_header();?> <?php global $options;
 
 		      <!-- Marketing Icons Section -->
 		      <div class="row">
-              <?php include('inc/content.php'); ?>
+              <?php get_template_part('inc/content'); ?>
 			  <?php get_sidebar(); ?>
 		      </div>
 			  <div class="row"><p>Post Visits: <strong><?php the_post_views();?><strong></p></div>
