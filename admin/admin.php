@@ -31,7 +31,7 @@ function wpl_admin_page()
 
                 <li class="tab" id="social_media_tab" onclick="showContent('tab2', this);">Social Media</li>
 
-                <li class="tab" onclick="showContent('tab3', this);">Functions List</li>
+                <?php /*   <li class="tab" onclick="showContent('tab3', this);">Functions/Features List</li>*/?>
                 <!-- <li class="tab" onclick="showContent('tab3', this);">Tab 3</li> -->
             </ul>
 
@@ -47,14 +47,14 @@ function wpl_admin_page()
                 ?>
             </div>
 
-
+<?php /*
             <div id="tab3" class="content">
                 <h2>Available Functions List</h2>
                 <?php
-                // include_once('pages/functions-list.php');
+                 include_once('pages/functions-list.php');
                 ?>
             </div>
-
+*/?>
             <!-- <div id="tab3" class="content">
                 <h2>Content for Tab 3</h2>
                 <p>This is the content for tab 3.</p>
@@ -97,15 +97,15 @@ function wpl_save_settings()
     update_option('wpl_settings', $wpl_settings);
     update_option('wpl_socialmedia', $wpl_socialmedia);
 ?>
-    <div id="setting-error-settings_updated" class="notice notice-success settings-error is-dismissible">
+    <div id="setting-error-settings_updated" class="notice notice-success  is-dismissible">
         <p><strong>Settings updated.</strong></p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button>
     </div>
 <?php
 
     $result = ob_get_clean();
-    $status = 1;
-    $message = "success";
-    $return = json_encode(array('result' => $result, 'Status' => $status, 'message' => $message, 'request' => $_REQUEST, 'args' => $args));
+    $status = 200;
+    $message = 'Success';
+    $return = json_encode(array('result' => $result, 'status' => $status, 'message' => $message, 'request' => $_REQUEST, 'args' => $args));
     echo $return;
     exit;
 }

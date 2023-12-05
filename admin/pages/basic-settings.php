@@ -1,8 +1,5 @@
 <?php
-
-
-
-
+/*
 foreach (WPL_AVAILABLE_OPTIONS as $key => $value) {
     WPL_FORMBUILDER->field([
         'type' => 'checkbox',
@@ -13,4 +10,14 @@ foreach (WPL_AVAILABLE_OPTIONS as $key => $value) {
     ]);
 }
 echo '<hr>';
-
+*/
+foreach (WPL_AVAILABLE_FEATURES as $k => $v) {
+    WPL_FORMBUILDER->field([
+        'type' => $v,
+        'label' => $k,
+        'name' => $k,
+        'id' => $k,
+        'dbval' => !empty(WPL_SETTINGS[$k]) ? WPL_SETTINGS[$k] : '',
+    ]);
+}
+echo '<hr>';

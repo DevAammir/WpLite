@@ -7,36 +7,85 @@ function isValidEmail(email) {
     return EmailRegex.test(email);
 }
 
-$('.alpha_only, .alpha').bind('keyup blur', function () {
-    var node = $(this);
-    node.val(node.val().replace(/[^a-z]/g, ''));
-}
-);
-$('.alpha_space_only, .alpha_space').bind('keyup blur', function () {
-    var node = $(this);
-    node.val(node.val().replace(/[^a-z ]/g, ''));
-}
-);
-$('.alpha_space_dash_only, .alpha-space').bind('keyup blur', function () {
-    var node = $(this);
-    node.val(node.val().replace(/[^a-z -]/g, ''));
-}
-);
-$('.numeric_only, .numeric, .numbers_only').bind('keyup blur', function () {
-    var node = $(this);
-    node.val(node.val().replace(/[^0-9]/g, ''));
-}
-);
-$('.alpha_numeric_only, .alpha_numeric').bind('keyup blur', function () {
-    var node = $(this);
-    node.val(node.val().replace(/[^a-z0-9]/g, ''));
-}
-);
-$('.alpha_numeric_dash, .no_special_chars').bind('keyup blur', function () {
-    var node = $(this);
-    node.val(node.val().replace(/[^a-z0-9 -]/g, ''));
-}
-);
+
+// Function for '.alpha_only, .alpha'
+document.querySelectorAll('.alpha_only, .alpha').forEach(function (element) {
+    element.addEventListener('keyup', function () {
+        var node = this;
+        node.value = node.value.replace(/[^a-z]/g, '');
+    });
+
+    element.addEventListener('blur', function () {
+        var node = this;
+        node.value = node.value.replace(/[^a-z]/g, '');
+    });
+});
+
+// Function for '.alpha_space_only, .alpha_space'
+document.querySelectorAll('.alpha_space_only, .alpha_space').forEach(function (element) {
+    element.addEventListener('keyup', function () {
+        var node = this;
+        node.value = node.value.replace(/[^a-z ]/g, '');
+    });
+
+    element.addEventListener('blur', function () {
+        var node = this;
+        node.value = node.value.replace(/[^a-z ]/g, '');
+    });
+});
+
+// Function for '.alpha_space_dash_only, .alpha-space'
+document.querySelectorAll('.alpha_space_dash_only, .alpha-space').forEach(function (element) {
+    element.addEventListener('keyup', function () {
+        var node = this;
+        node.value = node.value.replace(/[^a-z -]/g, '');
+    });
+
+    element.addEventListener('blur', function () {
+        var node = this;
+        node.value = node.value.replace(/[^a-z -]/g, '');
+    });
+});
+
+// Function for '.numeric_only, .numeric, .numbers_only'
+document.querySelectorAll('.numeric_only, .numeric, .numbers_only').forEach(function (element) {
+    element.addEventListener('keyup', function () {
+        var node = this;
+        node.value = node.value.replace(/[^0-9]/g, '');
+    });
+
+    element.addEventListener('blur', function () {
+        var node = this;
+        node.value = node.value.replace(/[^0-9]/g, '');
+    });
+});
+
+// Function for '.alpha_numeric_only, .alpha_numeric'
+document.querySelectorAll('.alpha_numeric_only, .alpha_numeric').forEach(function (element) {
+    element.addEventListener('keyup', function () {
+        var node = this;
+        node.value = node.value.replace(/[^a-z0-9]/g, '');
+    });
+
+    element.addEventListener('blur', function () {
+        var node = this;
+        node.value = node.value.replace(/[^a-z0-9]/g, '');
+    });
+});
+
+// Function for '.alpha_numeric_dash, .no_special_chars'
+document.querySelectorAll('.alpha_numeric_dash, .no_special_chars').forEach(function (element) {
+    element.addEventListener('keyup', function () {
+        var node = this;
+        node.value = node.value.replace(/[^a-z0-9 -]/g, '');
+    });
+
+    element.addEventListener('blur', function () {
+        var node = this;
+        node.value = node.value.replace(/[^a-z0-9 -]/g, '');
+    });
+});
+
 
 /**
 SCOLL TO MIDDLE(Insted of all the way to top)
