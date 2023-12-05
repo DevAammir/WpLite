@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="<?=(isset($options['site_dsec']) ? $options['site_dsec']: '');?>">
-<meta name="author" content="<?=(isset($options['author_desc']) ? $options['author_desc']: '');?>">
+    <meta name="description" content="<?=(isset(WPL_SETTINGS['site_dsec']) ? WPL_SETTINGS['site_dsec']: '');?>">
+<meta name="author" content="<?=(isset(WPL_SETTINGS['author_desc']) ? WPL_SETTINGS['author_desc']: '');?>">
 <?php if(!is_front_page()){$page_title = wp_title('', false).' | '; }else{$page_title = 'Home | ';}?>
 <title> <?php echo $page_title;?><?php bloginfo('name'); ?> </title>
 
-    <link rel="shortcut icon" href="<?= (isset($options['favicon']) ? $options['favicon'] : ''); ?>" type="image/x-icon">
-<link rel="icon" href="<?= (isset($options['favicon']) ? $options['favicon'] : ''); ?>" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= (isset(WPL_SETTINGS['favicon']) ? WPL_SETTINGS['favicon'] : ''); ?>" type="image/x-icon">
+<link rel="icon" href="<?= (isset(WPL_SETTINGS['favicon']) ? WPL_SETTINGS['favicon'] : ''); ?>" type="image/x-icon">
         <!-- Main Stylesheet File -->
         <?php wp_head();?>
   </head>
@@ -19,7 +19,7 @@
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
       <a href="<?= site_url(); ?>" class="navbar-brand">
-       <img src="<?php echo isset($options['logo'])?$options['logo']:''; ?>" alt="<?php bloginfo('name'); ?>" class="img-fluid" width="<?=(isset($options['logo_maxwidth'])?$options['logo_maxwidth']:'');?>" height="<?=isset($options['logo_maxheight'])?$options['logo_maxheight']:'';?>">
+       <img src="<?php echo isset(WPL_SETTINGS['logo'])?WPL_SETTINGS['logo']:''; ?>" alt="<?php bloginfo('name'); ?>" class="img-fluid logo"/>
       </a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>

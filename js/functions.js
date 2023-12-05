@@ -168,7 +168,10 @@ function current_page_is(the_page) {
 /***
 * HACK FOR BS5 TO WP NAV MENU
 * **/
-$('.current-menu-item').addClass('active');
+document.querySelectorAll('.current-menu-item').forEach(function (element) {
+    element.classList.add('active');
+});
+
 
 /***
  * AJAX FUNCTION FOR ONE RESPONSE
@@ -280,20 +283,44 @@ function include_page(page, section) {
 /* *
 * SELF PROVOKING CLONE/REMOVE DIV WITH BUTTON CLICK
 * */
-(function clone_and_remove() {
+(function cloneAndRemove() {
     console.log('HELP:: parent: .clone_remove_this, add_remove: .clone_trigger, .remove_trigger');
-    $(document).on('click', '.clone_trigger', function () {
-        let its_parent = $(this).closest('.clone_remove_this');
-        its_parent.clone().insertAfter(its_parent).find("input[type=text], textarea").val("");
-    });
 
-    $(document).on('click', '.remove_trigger', function () {
-        let its_parent = $(this).closest('.clone_remove_this');
-        if ($('.clone_remove_this').length > 1) {
-            its_parent.remove();
+    document.addEventListener('click', function (event) {
+        var target = event.target;
+
+        if (target.classList.contains('clone_trigger')) {
+            var itsParent = findClosestParent(target, '.clone_remove_this');
+            if (itsParent) {
+                var clone = itsParent.cloneNode(true);
+                itsParent.parentNode.insertBefore(clone, itsParent.nextSibling);
+                clearInputValues(clone);
+            }
+        }
+
+        if (target.classList.contains('remove_trigger')) {
+            var itsParent = findClosestParent(target, '.clone_remove_this');
+            if (itsParent && document.querySelectorAll('.clone_remove_this').length > 1) {
+                itsParent.parentNode.removeChild(itsParent);
+            }
         }
     });
+
+    function findClosestParent(element, selector) {
+        while (element && !element.classList.contains(selector)) {
+            element = element.parentElement;
+        }
+        return element;
+    }
+
+    function clearInputValues(element) {
+        var inputs = element.querySelectorAll('input[type=text], textarea');
+        inputs.forEach(function (input) {
+            input.value = '';
+        });
+    }
 })();
+
 
 
 
@@ -547,3 +574,17 @@ function wpt_get_postmeta_by_id(id, return_type, target, wpt_ajax_url) {
         }
     });
 }
+
+/***
+ * WOOCOMMERCE SUPPORT FOR BOOTSTRAP
+ * ***/
+function addClassToElement(selector, className) {
+    var element = document.querySelector(selector);
+    if (element) {
+        element.classList.add(className);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    addClassToElement('.woocommerce #primary.content-area', 'container');
+});

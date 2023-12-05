@@ -13,8 +13,7 @@ $available_social_media_platforms = [
     'Vimeo' => 'vimeo',
     // 'Telegram' => 'telegram',
     'WhatsApp' => 'whatsapp',
-    'Email' => 'email', // Not a social media platform, but often included in sharing options.
-    'Phone' => 'phone',
+    'Email' => 'site_email', // Not a social media platform, but often included in sharing options.
     'Phone' => 'phone',
 ];
 
@@ -32,8 +31,8 @@ $available_options_array = [
 
 $theme_features_array = [
     'logo' => 'wp_upload',
-    'logo_max-width' => 'text',
-    'logo_max-height' => 'text',
+    // 'logo_max-width' => 'text',
+    // 'logo_max-height' => 'text',
     'favicon' => 'wp_upload',
     'address' => 'textarea',
     'map' => 'textarea',

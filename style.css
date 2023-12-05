@@ -5,10 +5,10 @@ Author: Anonymous
 Author URI: 
 Description: A Simple theme to run This Website. 
 Text Domain: wpl
-Version: 0.2.1
+Version: 1.0
 Version Date: 04 Dec, 2023
 * * * * * * * * * */
-
+.logo{max-height: 90px;}
 .meta-info label {
     display: none;
 }

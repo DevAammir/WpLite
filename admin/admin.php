@@ -10,7 +10,7 @@ function wpl_admin_menu()
         'manage_options',     // Capability required to access
         'wpl-admin',  // Menu slug
         'wpl_admin_page',  // Callback function to render the page
-        'dashicons-admin-generic',  // Icon for the menu item (change as needed)
+        'dashicons-media-document',  // Icon for the menu item (change as needed)
         100  // Menu position
     );
 }

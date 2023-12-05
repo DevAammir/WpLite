@@ -13,13 +13,13 @@
 
                 _AJAX_function_1('#target', admin_ajax_url, 'wpl_save_settings', 'POST', form_data, 'json');
                 
-                if ($('#wpl_enable_social_media').prop('checked')) {
-                    $('#social_media_tab').show();
-                    $('#social_media_tab_content').show();
-                } else {
-                    $('#social_media_tab').hide();
-                    $('#social_media_tab_content').hide();
-                }
+                // if ($('#wpl_enable_social_media').prop('checked')) {
+                //     $('#social_media_tab').show();
+                //     $('#social_media_tab_content').show();
+                // } else {
+                //     $('#social_media_tab').hide();
+                //     $('#social_media_tab_content').hide();
+                // }
             });
 
 
