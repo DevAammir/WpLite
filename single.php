@@ -1,7 +1,4 @@
-<?php 
-get_header();?> <?php global $options;
-// global $social_arr;
-?><?php if (have_posts()): while (have_posts()): the_post();?>
+<?php if (have_posts()): while (have_posts()): the_post();?>
 
 		    <!-- Page Content -->
 		    <div class="container">

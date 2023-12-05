@@ -1,4 +1,4 @@
-<div class="col-md-8">
+<div class="col-md-12">
     <?php if (has_post_thumbnail()) : ?>
         <div class="post-featured">
             <img class="card-img-top img-fluid " src="<?= the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>">

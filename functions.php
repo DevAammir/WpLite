@@ -26,6 +26,8 @@ function theme_enqueue_scripts()
     // wp_register_script('bootstrap', get_template_directory_uri() . '', array('jquery'));
     wp_register_script('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', array('jquery'));
     wp_enqueue_script('bootstrap');
+
+    wp_enqueue_script('functions-handle', get_template_directory_uri() . '/js/functions.js', array('jquery'));
 }
 if (!is_admin()) :
     add_action('init', 'theme_enqueue_scripts');
@@ -129,9 +131,9 @@ add_theme_support('post-thumbnails');
 /**
  * ADDING WP COLORPICKER SUPPORT
  */
-add_action('admin_enqueue_scripts', 'wplite_add_color_picker');
+add_action('admin_enqueue_scripts', 'wplite_admin_scripts');
 
-function wplite_add_color_picker($hook)
+function wplite_admin_scripts($hook)
 {
 
     if (is_admin()) {
@@ -140,7 +142,9 @@ function wplite_add_color_picker($hook)
         wp_enqueue_style('wp-color-picker');
 
         // Include our custom jQuery file with WordPress Color Picker dependency
-        wp_enqueue_script('custom-script-handle', get_template_directory_uri() . '/theme-options/inc/custom-script.js', array('wp-color-picker'), false, true);
+        wp_enqueue_script('wp-colorpicker', get_template_directory_uri() . '/js/custom-script.js', array('wp-color-picker'), false, true);
+        
+        wp_enqueue_script('functions-handle', get_template_directory_uri() . '/js/functions.js', array('jquery'));
     }
 }
 
@@ -480,3 +484,34 @@ function _wpl_author_info(){
             $author_url = get_author_posts_url($author_id);
             echo '<a class="the_author" href="' . esc_url($author_url) . '">' . esc_html($author_name) . '</a>';
 }
+
+
+function mytheme_add_woocommerce_support() {
+    add_theme_support('woocommerce');
+}
+add_action('after_setup_theme', 'mytheme_add_woocommerce_support');
+
+// Remove WooCommerce styles
+add_filter('woocommerce_enqueue_styles', '__return_empty_array');
+
+
+function pd($data, $exit = null)
+{
+?>
+    <div class="row my-4" style="z-index:99999;">
+        <pre>TESTING MODE</pre>
+        <pre>
+        <?php print_r($data); ?> 
+    </pre>
+    </div>
+    <?php
+    if (isset($exit)) {
+        exit;
+    }
+}
+
+define('WPL_AJAX', admin_url('admin-ajax.php'));
+include_once 'common/form-builder.php';
+include_once 'common/config.php';
+include_once 'admin/admin.php';
+
