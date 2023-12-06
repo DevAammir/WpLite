@@ -6,7 +6,7 @@
             <?php while (have_posts()) : the_post(); $i++;?>
                     <div class="row border-bottom mb-2 mt-2 pb-4 pt-4 pb-2 pos-<?php echo $i; ?>?>">
                         <div class="col-md-2"><?php if (has_post_thumbnail()) { ?>
-                                <?php $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full'); ?>
+                                <?php $image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID(  )), 'full'); ?>
                                 <a href="<?= the_permalink(); ?>" class="entry__thumb-link pt-2 pb-2">
                                     <img src="<?php echo $image[0]; ?>" class="img-fluid" /></a><?php } ?>
                         </div>

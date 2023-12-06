@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 /**
  * Generate the function comment for the given function body.
  *
@@ -16,7 +17,7 @@
  */
 function show_social_media($atts)
 {
-    
+
     // pd(WPL_SOCIALMEDIA );
     // pd($atts,true );
 
@@ -25,15 +26,15 @@ function show_social_media($atts)
     $custom_icon = !empty($atts['icon']) ? $atts['icon'] : '';
     $extra_icon_class = !empty($atts['extra_icon_class']) ? $atts['extra_icon_class'] : '';
     $fontAwesomeClass = 'fab fa-' . $name;
-    
-    // Check if the key exists in WPL_SOCIALMEDIA array
-    $url = (isset(WPL_SOCIALMEDIA['sm_'.$name]) && !empty(WPL_SOCIALMEDIA['sm_'.$name])) ? WPL_SOCIALMEDIA['sm_'.$name] : '';
-    
-    $icon = empty($custom_icon) ? '<i class="'. $fontAwesomeClass.' '.$extra_icon_class.'"></i>' : $custom_icon;
 
-    $with_icon = '<a href="'.$url .'" class="'.$name.'" title="'.$name.'">'. $icon .'</a>';
-    $without_icon = '<label>'.ucfirst(str_replace("site_", "", $name)).'</label> : <a href="'.$url .'" class="'.$name.'" title="'.$name.'">'. $url .'</a>';
-    
+    // Check if the key exists in WPL_SOCIALMEDIA array
+    $url = (isset(WPL_SOCIALMEDIA['sm_' . $name]) && !empty(WPL_SOCIALMEDIA['sm_' . $name])) ? WPL_SOCIALMEDIA['sm_' . $name] : '';
+
+    $icon = empty($custom_icon) ? '<i class="' . $fontAwesomeClass . ' ' . $extra_icon_class . '"></i>' : $custom_icon;
+
+    $with_icon = '<a href="' . $url . '" class="' . $name . '" title="' . $name . '">' . $icon . '</a>';
+    $without_icon = '<label>' . ucfirst(str_replace("site_", "", $name)) . '</label> : <a href="' . $url . '" class="' . $name . '" title="' . $name . '">' . $url . '</a>';
+
     $return = $no_icon ? $without_icon : $with_icon;
 
     return !empty($url) ? $return : '.';
@@ -50,7 +51,7 @@ add_shortcode('wpl_sm', 'show_social_media');
  * @param array|null $atts The attributes for the function. Defaults to null.
  * @return string The HTML code for displaying the social media links.
  */
-function show_social_media_links($atts=null)
+function show_social_media_links($atts = null)
 {
     $extra_class_for_icon = !empty($atts['extra_icon_class']) ? $atts['extra_icon_class'] : '';
     $socialMedia = WPL_SOCIAL_MEDIA_PLATFORMS;
@@ -59,7 +60,7 @@ function show_social_media_links($atts=null)
     foreach ($socialMedia as $name => $key) {
         $url = WPL_SOCIALMEDIA['sm_' . $key];
         $fontAwesomeClass = 'fab fa-' . $key . ' ' . $extra_class_for_icon;
-        
+
         if (!empty($url)) {
             $output .= '<li><a href="' . $url . '" class="' . $key . '" title="' . $name . '"><i class="' . $fontAwesomeClass . '"></i></a></li>';
         }
@@ -71,7 +72,7 @@ function show_social_media_links($atts=null)
 
 add_shortcode('wpl_sm_links', 'show_social_media_links');
 
- 
+
 /**
  * Generates the function comment for the given function body.
  *
@@ -80,7 +81,8 @@ add_shortcode('wpl_sm_links', 'show_social_media_links');
  * @throws Some_Exception_Class description of exception
  * @return string the generated HTML output
  */
-function bootstrap_container_shortcode($atts, $content = null) {
+function bootstrap_container_shortcode($atts, $content = null)
+{
     $atts = shortcode_atts(
         array(
             'class' => '',
@@ -100,7 +102,7 @@ function bootstrap_container_shortcode($atts, $content = null) {
 add_shortcode('container', 'bootstrap_container_shortcode');
 
 
- 
+
 /**
  * Generate the function comment for the given function body.
  *
@@ -109,7 +111,8 @@ add_shortcode('container', 'bootstrap_container_shortcode');
  * @throws None
  * @return string The generated output. That is <div class="row">
  */
-function bootstrap_row_shortcode($atts, $content = null) {
+function bootstrap_row_shortcode($atts, $content = null)
+{
     $atts = shortcode_atts(
         array(
             'class' => '',
@@ -130,7 +133,8 @@ add_shortcode('row', 'bootstrap_row_shortcode');
 
 
 
-function bootstrap_col_shortcode($atts, $content = null) {
+function bootstrap_col_shortcode($atts, $content = null)
+{
     $atts = shortcode_atts(
         array(
             'class' => '',
@@ -150,3 +154,6 @@ function bootstrap_col_shortcode($atts, $content = null) {
     return $output;
 }
 add_shortcode('col', 'bootstrap_col_shortcode');
+
+
+
