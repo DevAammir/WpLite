@@ -1,76 +1,74 @@
 <?php 
-
-function show_phone()
+/**
+ * Generate the function comment for the given function body.
+ *
+ * @param array $atts An associative array of attributes.
+ *     - string $atts['no_icon'] Whether to display the icon or not.
+ *     - string $atts['for'] The name to be displayed.
+ *     - string $atts['icon'] The custom icon to be displayed.
+ *     - string $atts['extra_icon_class'] The extra class for the icon.
+ *     - string $atts['platform'] The platform for the social media.
+ *
+ * @throws Some_Exception_Class This function may throw a Some_Exception_Class
+ *     if something goes wrong.
+ *
+ * @return string The HTML code for the social media link.
+ */
+function show_social_media($atts)
 {
-    global $options;
-    return $options['phone'] . '!';
+    
+    // pd(WPL_SOCIALMEDIA );
+    // pd($atts,true );
+
+    $no_icon = !empty($atts['no_icon']) ? $atts['no_icon'] : '';
+    $name = $atts['for'];
+    $custom_icon = !empty($atts['icon']) ? $atts['icon'] : '';
+    $extra_icon_class = !empty($atts['extra_icon_class']) ? $atts['extra_icon_class'] : '';
+    $fontAwesomeClass = 'fab fa-' . $name;
+    
+    // Check if the key exists in WPL_SOCIALMEDIA array
+    $url = (isset(WPL_SOCIALMEDIA['sm_'.$name]) && !empty(WPL_SOCIALMEDIA['sm_'.$name])) ? WPL_SOCIALMEDIA['sm_'.$name] : '';
+    
+    $icon = empty($custom_icon) ? '<i class="'. $fontAwesomeClass.' '.$extra_icon_class.'"></i>' : $custom_icon;
+
+    $with_icon = '<a href="'.$url .'" class="'.$name.'" title="'.$name.'">'. $icon .'</a>';
+    $without_icon = '<label>'.ucfirst(str_replace("site_", "", $name)).'</label> : <a href="'.$url .'" class="'.$name.'" title="'.$name.'">'. $url .'</a>';
+    
+    $return = $no_icon ? $without_icon : $with_icon;
+
+    return !empty($url) ? $return : '.';
 }
 
-add_shortcode('phone', 'show_phone');
+add_shortcode('wpl_sm', 'show_social_media');
 
-function show_email()
-{
-    global $options;
-    return $options['email'];
-}
 
-add_shortcode('site_email', 'show_email');
 
-function show_addr()
-{
-    global $options;
-    return $options['address'];
-}
-
-add_shortcode('address', 'show_addr');
-
-function show_map()
-{
-    global $options;
-    return $options['map'];
-}
-
-add_shortcode('map', 'show_map');
 
 /**
- * SOCIAL MEDIA LINKS SHORTCODES 
- * * */
-function fb()
+ * Generates HTML code for displaying social media links.
+ *
+ * @param array|null $atts The attributes for the function. Defaults to null.
+ * @return string The HTML code for displaying the social media links.
+ */
+function show_social_media_links($atts=null)
 {
-    global $options;
-    return $options['facebook'];
+    $extra_class_for_icon = !empty($atts['extra_icon_class']) ? $atts['extra_icon_class'] : '';
+    $socialMedia = WPL_SOCIAL_MEDIA_PLATFORMS;
+    $output = '<div class="wpl-social-links"><ul>';
+
+    foreach ($socialMedia as $name => $key) {
+        $url = WPL_SOCIALMEDIA['sm_' . $key];
+        $fontAwesomeClass = 'fab fa-' . $key . ' ' . $extra_class_for_icon;
+        
+        if (!empty($url)) {
+            $output .= '<li><a href="' . $url . '" class="' . $key . '" title="' . $name . '"><i class="' . $fontAwesomeClass . '"></i></a></li>';
+        }
+    }
+
+    $output .= '<ul></div>';
+    return $output;
 }
 
-add_shortcode('facebook', 'fb');
+add_shortcode('wpl_sm_links', 'show_social_media_links');
 
-function tw()
-{
-    global $options;
-    return $options['twitter'];
-}
 
-add_shortcode('twitter', 'tw');
-
-function instagram()
-{
-    global $options;
-    return $options['instagram'];
-}
-
-add_shortcode('instagram', 'instagram');
-
-function pinterest()
-{
-    global $options;
-    return $options['pinterest'];
-}
-
-add_shortcode('pinterest', 'pinterest');
-
-function youtube()
-{
-    global $options;
-    return $options['youtube'];
-}
-
-add_shortcode('youtube', 'youtube');

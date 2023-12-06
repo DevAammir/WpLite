@@ -578,13 +578,18 @@ function wpt_get_postmeta_by_id(id, return_type, target, wpt_ajax_url) {
 /***
  * WOOCOMMERCE SUPPORT FOR BOOTSTRAP
  * ***/
-function addClassToElement(selector, className) {
+function addClassToElement(selector, ...classNames) {
     var element = document.querySelector(selector);
     if (element) {
-        element.classList.add(className);
+        console.log('Adding classes:', classNames, 'to element:', element);
+        element.classList.add(...classNames);
+        console.log('Classes after addition:', element.classList);
+    } else {
+        console.log('Element not found for selector:', selector);
     }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
     addClassToElement('.woocommerce #primary.content-area', 'container');
+    addClassToElement('input[type="submit"]', 'btn','btn-primary');
 });

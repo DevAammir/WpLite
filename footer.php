@@ -15,29 +15,15 @@
                     <?php dynamic_sidebar('footer_3'); ?>
                 </div>
                 <div class="col-md-3 footer-contact text-white">
-                <?php dynamic_sidebar('footer_4'); ?>
-                    <h4><?php echo __('Contact Us', TD);
-                        ?></h4>
-                    <p><strong><?php echo __('Phone', TD);
-                                ?>:</strong> <?php echo  WPL_SOCIALMEDIA['sm_phone'];
-                                                ?><br>
-                        <strong><?php echo __('Email', 'wpl22');
-                                ?>:</strong> <?php echo WPL_SOCIALMEDIA['sm_site_email'];
-                                                ?><br>
+                    <?php dynamic_sidebar('footer_4'); ?>
+                    <h4><?php echo __('Contact Us', TD); ?></h4>
+                    <p>
+                        <strong><?php echo do_shortcode('[wpl_sm for="phone" no_icon="true"]'); ?></strong><br>
+                        <strong><?php echo do_shortcode('[wpl_sm for="site_email" no_icon="true"]'); ?></strong><br>
                     </p>
 
-                    <div class="social-links">
-                        <?php $socialMedia = WPL_SOCIAL_MEDIA_PLATFORMS;
+                    <?php echo do_shortcode('[wpl_sm_links]'); ?>
 
-                        foreach ($socialMedia as $name => $key) {
-                            $url = WPL_SOCIALMEDIA['sm_' . $key];
-                            $fontAwesomeClass = 'fab fa-' . $key . ' text-white';
-                            if (!empty($url)) :
-                        ?>
-                                <a href="<?php echo $url; ?>" class="<?php echo $key; ?>" title="<?php echo $name; ?>"><i class="<?php echo $fontAwesomeClass; ?>"></i></a>
-                        <?php endif;
-                        } ?>
-                    </div>
                 </div>
             </div>
         </div>
@@ -50,7 +36,7 @@
                         <?php echo bloginfo('name'); ?> / <?php echo  bloginfo('description'); ?> © All Rights Reserved</p>
                 </div>
                 <div class="col">
-                <p class="m-0 text-white text-right">Copyright © <strong><?php echo bloginfo('name'); ?></strong> <?php echo date("Y"); ?></p>
+                    <p class="m-0 text-white text-right">Copyright © <strong><?php echo bloginfo('name'); ?></strong> <?php echo date("Y"); ?></p>
                 </div>
             </div>
         </div>
