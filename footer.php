@@ -16,14 +16,6 @@
                 </div>
                 <div class="col-md-3 footer-contact text-white">
                     <?php dynamic_sidebar('footer_4'); ?>
-                    <h4><?php echo __('Contact Us', TD); ?></h4>
-                    <p>
-                        <strong><?php echo do_shortcode('[wpl_sm for="phone" no_icon="true"]'); ?></strong><br>
-                        <strong><?php echo do_shortcode('[wpl_sm for="site_email" no_icon="true"]'); ?></strong><br>
-                    </p>
-
-                    <?php echo do_shortcode('[wpl_sm_links]'); ?>
-
                 </div>
             </div>
         </div>
@@ -31,12 +23,12 @@
     <div class="border-top pt-3 pb-3">
         <div class="container">
             <div class="row">
-                <div class="col">
+                <?php /* <div class="col">
                     <p class="m-0 text-white">
                         <?php echo bloginfo('name'); ?> / <?php echo  bloginfo('description'); ?> © All Rights Reserved</p>
-                </div>
+                </div> */ ?>
                 <div class="col">
-                    <p class="m-0 text-white text-right">Copyright © <strong><?php echo bloginfo('name'); ?></strong> <?php echo date("Y"); ?></p>
+                    <p class="m-0 text-white text-center">Copyright © <strong><?php echo bloginfo('name'); ?></strong> <?php echo date("Y"); ?></p>
                 </div>
             </div>
         </div>

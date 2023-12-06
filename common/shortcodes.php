@@ -71,4 +71,82 @@ function show_social_media_links($atts=null)
 
 add_shortcode('wpl_sm_links', 'show_social_media_links');
 
+ 
+/**
+ * Generates the function comment for the given function body.
+ *
+ * @param array $atts the shortcode attributes
+ * @param string|null $content the shortcode content
+ * @throws Some_Exception_Class description of exception
+ * @return string the generated HTML output
+ */
+function bootstrap_container_shortcode($atts, $content = null) {
+    $atts = shortcode_atts(
+        array(
+            'class' => '',
+            'id' => '',
+        ),
+        $atts,
+        'bootstrap_container'
+    );
 
+    $class = !empty($atts['class']) ? ' ' . esc_attr($atts['class']) : '';
+    $id = !empty($atts['id']) ? ' id="' . esc_attr($atts['id']) . '"' : '';
+
+    $output = '<div class="container' . $class . '"' . $id . '>' . $content . '</div>';
+
+    return $output;
+}
+add_shortcode('container', 'bootstrap_container_shortcode');
+
+
+ 
+/**
+ * Generate the function comment for the given function body.
+ *
+ * @param array $atts The attributes passed to the shortcode.
+ * @param string|null $content The content within the shortcode.
+ * @throws None
+ * @return string The generated output. That is <div class="row">
+ */
+function bootstrap_row_shortcode($atts, $content = null) {
+    $atts = shortcode_atts(
+        array(
+            'class' => '',
+            'id' => '',
+        ),
+        $atts,
+        'bootstrap_row'
+    );
+
+    $class = !empty($atts['class']) ? ' ' . esc_attr($atts['class']) : '';
+    $id = !empty($atts['id']) ? ' id="' . esc_attr($atts['id']) . '"' : '';
+
+    $output = '<div class="row' . $class . '"' . $id . '>' . do_shortcode($content) . '</div>';
+
+    return $output;
+}
+add_shortcode('row', 'bootstrap_row_shortcode');
+
+
+
+function bootstrap_col_shortcode($atts, $content = null) {
+    $atts = shortcode_atts(
+        array(
+            'class' => '',
+            'id' => '',
+            'size' => '', // Default size is an empty string
+        ),
+        $atts,
+        'bootstrap_col'
+    );
+
+    $class = !empty($atts['class']) ? ' ' . esc_attr($atts['class']) : '';
+    $id = !empty($atts['id']) ? ' id="' . esc_attr($atts['id']) . '"' : '';
+    $size = !empty($atts['size']) ? 'col-' . esc_attr($atts['size']) : 'col';
+
+    $output = '<div class="' . $size . $class . '"' . $id . '>' . do_shortcode($content) . '</div>';
+
+    return $output;
+}
+add_shortcode('col', 'bootstrap_col_shortcode');

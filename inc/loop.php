@@ -21,6 +21,8 @@
             <div class="row pt-2 pb-2">
                 <div class="col-md-12"><?php wplight_pagination(); ?></div>
             </div>
+            <?php else: ?>
+                <?php get_template_part('inc/not-found');?>
             <?php endif; ?>
         </div>
     </div>

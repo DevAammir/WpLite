@@ -103,20 +103,33 @@ function scroll_middle(id) {
 
 /* *
 *JAVASCRIPT: CLONE DIV WITH BUTTON CLICK
-* */
-function clone_html(to_clone) {// ADD THIS TO BUTTON NOCLICK
-    // var button = document.getElementById(btn);
-    // var button = this;
-    var elementToClone = document.getElementsByClassName(to_clone)[0];
 
-    var newElement = elementToClone.cloneNode(true);
-    elementToClone.parentNode.appendChild(newElement);
-    console.log('cloned');
-    // Add the click event listener to the button
-    // button.addEventListener("click", cloneElement);
-    let the_inputs = newElement.querySelector('input');
-    the_inputs.value = "";
+How to Use:
+To use this function, you would call it and provide the class name of the element you want to clone
+ as an argument. For example:
+clone_html('elementToCloneClass');
+
+What It Does:
+This function clones the first element found in the document with the specified class (to_clone). It then appends the cloned element after the original in the DOM. Finally, it clears the value of the first input element within the cloned element and logs "cloned" to the console.
+
+* */
+function clone_html(to_clone) {
+    var elementsToClone = document.getElementsByClassName(to_clone);
+
+    if (elementsToClone.length > 0) {
+        var elementToClone = elementsToClone[0];
+
+        var newElement = elementToClone.cloneNode(true);
+        elementToClone.parentNode.appendChild(newElement);
+        console.log('Cloned:', to_clone);
+
+        let theInputs = newElement.querySelectorAll('input');
+        theInputs.forEach(input => input.value = "");
+    } else {
+        console.error('No element found with class:', to_clone);
+    }
 }
+
 
 
 
@@ -156,15 +169,6 @@ function current_page_is(the_page) {
     }
 }
 
-
-
-
-/* * * ====================================================================================================
- * * * * JQUERY
- * * ======================================================================================================*/
-
-
-
 /***
 * HACK FOR BS5 TO WP NAV MENU
 * **/
@@ -198,7 +202,7 @@ function _AJAX_function_1(target, admin_ajax_url, action, type, data, data_type)
             $('input').attr('disabled', false);
             $(target).html(response.result);
         } else {
-            $(target).html('<div class="error">'+response.message+"</div>");
+            $(target).html('<div class="error">' + response.message + "</div>");
         }
     }); //ajax done
 }
@@ -259,7 +263,13 @@ function _AJAX_function_3(target_1, target_2, target_3, admin_ajax_url, action, 
 /* *
 * AJAX FUNCTION TO INCLUDE PAGE
 * */
-
+/**
+ * Fetches a page and updates the content of a specified section.
+ *
+ * @param {string} page - The URL of the page to fetch.
+ * @param {string} section - The selector of the section to update.
+ * @return {undefined} This function does not return a value.
+ */
 function include_page(page, section) {
     $.ajax({
         url: page,
@@ -275,14 +285,20 @@ function include_page(page, section) {
     });
 }
 
-/* *
-* AJAX FUNCTION TO GET DATA FROM SERVER AND FILL FORM FIELDS ====COMING SOON
-* */
-
-
-/* *
-* SELF PROVOKING CLONE/REMOVE DIV WITH BUTTON CLICK
-* */
+/**
+ * cloneAndRemove - Sets up event listeners to clone and remove elements based on click events.
+ *
+ * @function
+ * @name cloneAndRemove
+ * @memberof global
+ *
+ * @description
+ * This function initializes event listeners for click events on the document. When an element with
+ * the class 'clone_trigger' is clicked, it clones its closest ancestor with the class
+ * 'clone_remove_this' and inserts the clone after the original. Additionally, when an element with
+ * the class 'remove_trigger' is clicked, it removes its closest ancestor with the class
+ * 'clone_remove_this', but only if there is more than one such element in the document.
+ */
 (function cloneAndRemove() {
     console.log('HELP:: parent: .clone_remove_this, add_remove: .clone_trigger, .remove_trigger');
 
@@ -305,291 +321,34 @@ function include_page(page, section) {
             }
         }
     });
-
-    function findClosestParent(element, selector) {
-        while (element && !element.classList.contains(selector)) {
-            element = element.parentElement;
-        }
-        return element;
-    }
-
-    function clearInputValues(element) {
-        var inputs = element.querySelectorAll('input[type=text], textarea');
-        inputs.forEach(function (input) {
-            input.value = '';
-        });
-    }
-})();
-
-
-
-
-
-
-/***|Apply CSS Class 'active' to current menu item in Bootstrap5|***/
-document.addEventListener('DOMContentLoaded', function () {
-    var currentItem = document.querySelector('li.current-menu-item');
-    if (currentItem !== null) {
-        currentItem.classList.add('active');
-    }
 });
+    /***|Apply CSS Class 'active' to current menu item in Bootstrap5|***/
+    document.addEventListener('DOMContentLoaded', function () {
+        var currentItem = document.querySelector('li.current-menu-item');
+        if (currentItem !== null) {
+            currentItem.classList.add('active');
+        }
+    });
 
-/******
- * HELPER FUNCTIONS
- * *******/
-/* Corresponding to wpt_get_post_by_id()*/
-function wpt_get_post_by_id(postId, target,wpt_ajax_url) {
-    // AJAX request
-    $.ajax({
-        url: wpt_ajax_url,
-        dataType: 'html',
-        type: 'POST',
-        data: {
-            action: 'wpt_get_post_by_id_endpoint',
-            id: postId, 
-        },
-        beforeSend: function(xhr) {
-            // Update the content of the target div
-            $(target).html('<div id="loading"> Please wait... </div>');
-        },
-        success: function(response) {
-            // Update the content of the target div
-            $(target).html(response);
-        },
-        error: function(error) {
-            console.error('Request failed: ', error);
-        }
-    });
-}
-/* Corresponding to wpt_get_post_by_name()*/
-function wpt_get_post_by_name(post_name, post_type,target,wpt_ajax_url) {
-    // AJAX request
-    $.ajax({
-        url: wpt_ajax_url,
-        dataType: 'html',
-        type: 'POST',
-        data: {
-            action: 'wpt_get_post_by_name_endpoint',
-            post_name: post_name, 
-            post_type: post_type
-        },
-        beforeSend: function(xhr) {
-            // Update the content of the target div
-            $(target).html('<div id="loading"> Please wait... </div>');
-        },
-        success: function(response) {
-            // Update the content of the target div
-            $(target).html(response);
-        },
-        error: function(error) {
-            console.error('Request failed: ', error);
-        }
-    });
-}
-/* Corresponding to wpt_get_posts()*/
-function wpt_get_posts(post_type, size, target, wpt_ajax_url) {
-    // AJAX request
-    $.ajax({
-        url: wpt_ajax_url,
-        dataType: 'html',
-        type: 'POST',
-        data: {
-            action: 'wpt_get_posts_endpoint',
-            // per_page: per_page,
-            post_type: post_type,
-            size: size
-        },
-        beforeSend: function (xhr) {
-            // Update the content of the target div
-            $(target).html('<div id="loading"> Please wait... </div>');
-        },
-        success: function (response) {
-            // Update the content of the target div
-            $(target).html(response);
-        },
-        error: function (error) {
-            console.error('Request failed: ', error);
-        },
-        complete: function (xhr, status) {
-            // Log additional information in the console
-            console.log('Status:', status);
-            // console.log('Response:', xhr.responseText);
-        }
-    });
-}
-/* Corresponding to wpt_get_posts_by_ids()*/
-function wpt_get_posts_by_ids(post_ids, size, target, wpt_ajax_url) {
-    // AJAX request
-    $.ajax({
-        url: wpt_ajax_url,
-        dataType: 'html',
-        type: 'POST',
-        data: {
-            action: 'wpt_get_posts_by_ids_endpoint',
-            // per_page: per_page,
-            posts_ids: post_ids,
-            size: size
-        },
-        beforeSend: function (xhr) {
-            // Update the content of the target div
-            $(target).html('<div id="loading"> Please wait... </div>');
-        },
-        success: function (response) {
-            // Update the content of the target div
-            $(target).html(response);
-        },
-        error: function (error) {
-            console.error('Request failed: ', error);
-        },
-        complete: function (xhr, status) {
-            // Log additional information in the console
-            console.log('Status:', status);
-            // console.log('Response:', xhr.responseText);
-        }
-    });
-}
-/* Corresponding to wpt_get_posts_by_meta()*/
-function wpt_get_posts_by_meta(meta_key, meta_value, size, target, wpt_ajax_url) {
-    // AJAX request
-    $.ajax({
-        url: wpt_ajax_url,
-        dataType: 'html',
-        type: 'POST',
-        data: {
-            action: 'wpt_get_posts_by_meta_endpoint',
-            // per_page: per_page,
-            meta_key: meta_key,
-            meta_value: meta_value,
-            size: size
-        },
-        beforeSend: function (xhr) {
-            // Update the content of the target div
-            $(target).html('<div id="loading"> Please wait... </div>');
-        },
-        success: function (response) {
-            // Update the content of the target div
-            $(target).html(response);
-        },
-        error: function (error) {
-            console.error('Request failed: ', error);
-        },
-        complete: function (xhr, status) {
-            // Log additional information in the console
-            console.log('Status:', status);
-            // console.log('Response:', xhr.responseText);
-        }
-    });
-}
+    /******
+     * HELPER FUNCTIONS
+     * *******/
 
-/* Corresponding to wpt_get_posts_by_categories()*/
-function wpt_get_posts_by_categories(category, post_type, size, target, wpt_ajax_url) {
-    // AJAX request
-    $.ajax({
-        url: wpt_ajax_url,
-        dataType: 'html',
-        type: 'POST',
-        data: {
-            action: 'wpt_get_posts_by_categories_endpoint', 
-            category: category,
-            size: size,
-            post_type: post_type
-        },
-        beforeSend: function (xhr) {
-            // Update the content of the target div
-            $(target).html('<div id="loading"> Please wait... </div>');
-        },
-        success: function (response) {
-            // Update the content of the target div
-            $(target).html(response);
-        },
-        error: function (error) {
-            console.error('Request failed: ', error);
-        },
-        complete: function (xhr, status) {
-            // Log additional information in the console
-            console.log('Status:', status);
-            // console.log('Response:', xhr.responseText);
+    /***
+     * WOOCOMMERCE SUPPORT FOR BOOTSTRAP
+     * ***/
+    function addClassToElement(selector, ...classNames) {
+        var element = document.querySelector(selector);
+        if (element) {
+            console.log('Adding classes:', classNames, 'to element:', element);
+            element.classList.add(...classNames);
+            console.log('Classes after addition:', element.classList);
+        } else {
+            console.log('Element not found for selector:', selector);
         }
-    });
-}
-/* Corresponding to wpt_get_posts_by_author()*/
-function wpt_get_posts_by_author(author, post_type, size, target, wpt_ajax_url) {
-    // AJAX request
-    $.ajax({
-        url: wpt_ajax_url,
-        dataType: 'html',
-        type: 'POST',
-        data: {
-            action: 'wpt_get_posts_by_author_endpoint', 
-            author: author,
-            size: size,
-            post_type: post_type
-        },
-        beforeSend: function (xhr) {
-            // Update the content of the target div
-            $(target).html('<div id="loading"> Please wait... </div>');
-        },
-        success: function (response) {
-            // Update the content of the target div
-            $(target).html(response);
-        },
-        error: function (error) {
-            console.error('Request failed: ', error);
-        },
-        complete: function (xhr, status) {
-            // Log additional information in the console
-            console.log('Status:', status);
-            // console.log('Response:', xhr.responseText);
-        }
-    });
-}
-
-/* Corresponding to wpt_get_postmeta_by_id()*/
-function wpt_get_postmeta_by_id(id, return_type, target, wpt_ajax_url) {
-    // AJAX request
-    $.ajax({
-        url: wpt_ajax_url,
-        dataType: 'html',
-        type: 'POST',
-        data: {
-            action: 'wpt_get_postmeta_by_id_endpoint', 
-            id: id,
-            return_type: return_type
-        },
-        beforeSend: function (xhr) {
-            // Update the content of the target div
-            $(target).html('<div id="loading"> Please wait... </div>');
-        },
-        success: function (response) {
-            // Update the content of the target div
-            $(target).html(response);
-        },
-        error: function (error) {
-            console.error('Request failed: ', error);
-        },
-        complete: function (xhr, status) {
-            // Log additional information in the console
-            console.log('Status:', status);
-            // console.log('Response:', xhr.responseText);
-        }
-    });
-}
-
-/***
- * WOOCOMMERCE SUPPORT FOR BOOTSTRAP
- * ***/
-function addClassToElement(selector, ...classNames) {
-    var element = document.querySelector(selector);
-    if (element) {
-        console.log('Adding classes:', classNames, 'to element:', element);
-        element.classList.add(...classNames);
-        console.log('Classes after addition:', element.classList);
-    } else {
-        console.log('Element not found for selector:', selector);
     }
-}
 
-document.addEventListener('DOMContentLoaded', function () {
-    addClassToElement('.woocommerce #primary.content-area', 'container');
-    addClassToElement('input[type="submit"]', 'btn','btn-primary');
-});
+    document.addEventListener('DOMContentLoaded', function () {
+        addClassToElement('.woocommerce #primary.content-area', 'container');
+        addClassToElement('input[type="submit"]', 'btn', 'btn-primary');
+    });

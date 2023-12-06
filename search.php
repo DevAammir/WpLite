@@ -1,4 +1,4 @@
-<?php get_header(); ?> <?php global $options;global $social_arr;?>
+<?php /*get_header(); ?> <?php global $options;global $social_arr;?>
 <div class="container">
 <div class="row pt-5 pb-5">
 <div class="col-md-12">
@@ -31,5 +31,11 @@
     </div>
 </div>
 </div>
+</div>
+<?php get_footer(); */?>
+<?php get_header(); ?>
+<div class="container search">
+    <h1 class="heading-lg-b"><?php wp_title(''); ?></h1>
+    <?php get_template_part('inc/loop'); ?>
 </div>
 <?php get_footer(); ?>

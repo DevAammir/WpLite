@@ -1,42 +1,42 @@
-<?php 
+<?php
 
 /**ADD CSS CLASS TO BODY
-**/
+ **/
 function custom_body_classes($classes)
 {
     global $post;
 
-    // Add post type and post name
-    if (isset($post)) {
+    if (isset($post) && !is_null($post)) {
+        // Add post type and post name
         $classes[] = $post->post_type . '-' . $post->post_name;
-    }
 
-    // Add category IDs
-    foreach ((get_the_category($post->ID)) as $category) {
-        $classes[] = 'cat-' . $category->cat_ID . '-id';
-    }
+        // Add category IDs
+        foreach ((get_the_category($post->ID)) as $category) {
+            $classes[] = 'cat-' . $category->cat_ID . '-id';
+        }
 
-    // Add custom post type
-    if (is_singular() && get_post_type() !== 'post') {
-        $classes[] = 'post-type-' . get_post_type();
-    }
+        // Add custom post type
+        if (is_singular() && get_post_type() !== 'post') {
+            $classes[] = 'post-type-' . get_post_type();
+        }
 
-    // Add taxonomy
-    $taxonomies = get_post_taxonomies($post->ID);
-    foreach ($taxonomies as $taxonomy) {
-        $terms = get_the_terms($post->ID, $taxonomy);
-        if ($terms) {
-            foreach ($terms as $term) {
-                $classes[] = 'taxonomy-' . $taxonomy . '-' . $term->slug;
+        // Add taxonomy
+        $taxonomies = get_post_taxonomies($post->ID);
+        foreach ($taxonomies as $taxonomy) {
+            $terms = get_the_terms($post->ID, $taxonomy);
+            if ($terms) {
+                foreach ($terms as $term) {
+                    $classes[] = 'taxonomy-' . $taxonomy . '-' . $term->slug;
+                }
             }
         }
-    }
 
-    // Check if it's a custom page template
-    $page_template = get_page_template_slug();
-    if ($page_template) {
-        $template_name = pathinfo($page_template, PATHINFO_FILENAME);
-        $classes[] = 'page-template-' . sanitize_html_class($template_name);
+        // Check if it's a custom page template
+        $page_template = get_page_template_slug();
+        if ($page_template) {
+            $template_name = pathinfo($page_template, PATHINFO_FILENAME);
+            $classes[] = 'page-template-' . sanitize_html_class($template_name);
+        }
     }
 
     // Add other checks as needed
@@ -44,7 +44,9 @@ function custom_body_classes($classes)
     return $classes;
 }
 
-add_filter('body_class', 'custom_body_classes');
+if (!is_404()) {
+    add_filter('body_class', 'custom_body_classes');
+}
 
 
 /* * *********
@@ -92,7 +94,7 @@ create_widget(' Footer 3', 'footer_3', '');
 create_widget(' Footer 4', 'footer_4', '');
 
 /* Disable WordPress Admin Bar for all users but admins. */
-add_filter( 'show_admin_bar', '__return_false' );
+add_filter('show_admin_bar', '__return_false');
 
 /* * *********
  * ADDING FEATURED IMAGE THEME SUPPORT
@@ -106,10 +108,11 @@ add_theme_support('post-thumbnails');
  * @throws None
  * @return void
  */
-function mytheme_add_woocommerce_support() {
-	add_theme_support( 'woocommerce', array(
-		'thumbnail_image_width' => 150,
-		'single_image_width'    => 300,
+function mytheme_add_woocommerce_support()
+{
+    add_theme_support('woocommerce', array(
+        'thumbnail_image_width' => 150,
+        'single_image_width'    => 300,
 
         'product_grid'          => array(
             'default_rows'    => 3,
@@ -119,6 +122,6 @@ function mytheme_add_woocommerce_support() {
             'min_columns'     => 2,
             'max_columns'     => 5,
         ),
-	) );
+    ));
 }
-add_action( 'after_setup_theme', 'mytheme_add_woocommerce_support' );
+add_action('after_setup_theme', 'mytheme_add_woocommerce_support');
