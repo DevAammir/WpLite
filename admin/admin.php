@@ -27,13 +27,15 @@ function wpl_admin_page()
 
         <form method="post" action="#" id="wpl_save_settings_form">
             <ul class="tabs">
-                <li class="tab active" onclick="showContent('tab1', this);">Basic Settings</li>
+                <li class="tab " onclick="showContent('tab1', this);">Basic Settings</li>
 
                 <li class="tab" id="social_media_tab" onclick="showContent('tab2', this);">Social Media</li>
 
-                <?php /*   <li class="tab" onclick="showContent('tab3', this);">Functions/Features List</li>*/?>
+                <li class="tab" onclick="showContent('tab3', this);">Available Functions/Features List</li>
                 <!-- <li class="tab" onclick="showContent('tab3', this);">Tab 3</li> -->
             </ul>
+
+
 
             <div id="tab1" class="content active">
                 <?php
@@ -47,14 +49,14 @@ function wpl_admin_page()
                 ?>
             </div>
 
-<?php /*
-            <div id="tab3" class="content">
-                <h2>Available Functions List</h2>
+
+            <div id="tab3" id="available_features" class="content">
+                <h2>Available Features List</h2>
                 <?php
-                 include_once('pages/functions-list.php');
+                include_once('pages/features-list.php');
                 ?>
             </div>
-*/?>
+
             <!-- <div id="tab3" class="content">
                 <h2>Content for Tab 3</h2>
                 <p>This is the content for tab 3.</p>

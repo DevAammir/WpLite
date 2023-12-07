@@ -1,6 +1,18 @@
 <?php
 $textdomain = 'wpl';
 define('TD', $textdomain);
+
+/***********************
+ *  ADDITIONAL SUPPORT
+ **********************/
+include 'common/form-builder.php';
+
+/***********************
+ *  SETTINGS
+ **********************/
+include_once 'common/config.php';
+include_once 'admin/admin.php';
+
 /********************  
  * enqueue CSS AND JS 
  *********************/
@@ -38,17 +50,7 @@ include_once 'common/features.php';
 define('WPL_AJAX', admin_url('admin-ajax.php'));
 
 /***********************
- *  ADDITIONAL SUPPORT
- **********************/
-include_once 'common/form-builder.php';
-
-/***********************
- *  SETTINGS
- **********************/
-include_once 'common/config.php';
-include_once 'admin/admin.php';
-
-/***********************
  *  CUSTOM FUNCTIONS
  **********************/
 include_once 'inc/custom_functions.php';
+

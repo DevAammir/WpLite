@@ -12,5 +12,8 @@ function register_theme_menus()
     register_nav_menus(
         array('secondary_menu' => _('Secondary Menu'))
     );
+    register_nav_menus(
+        array('footer_menu' => _('Footer Menu'))
+    );
 }
 add_action('init', 'register_theme_menus');

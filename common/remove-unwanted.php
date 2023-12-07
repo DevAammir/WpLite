@@ -28,12 +28,3 @@
 remove_filter('the_excerpt', 'wpautop');
 
 //remove_filter ('acf_the_field', 'wpautop');
-
-/* * **
-  REMOVE [] FROM EXCERPT:
- * * */
-function new_excerpt_more($more)
-{
-    return '';
-}
-add_filter('excerpt_more', 'new_excerpt_more');

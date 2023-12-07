@@ -18,8 +18,10 @@
 function show_social_media($atts)
 {
 
-    // pd(WPL_SOCIALMEDIA );
-    // pd($atts,true );
+if(!empty($atts['help'])){
+    wpl_sm_help();
+    die();
+}
 
     $no_icon = !empty($atts['no_icon']) ? $atts['no_icon'] : '';
     $name = $atts['for'];
@@ -42,6 +44,68 @@ function show_social_media($atts)
 
 add_shortcode('wpl_sm', 'show_social_media');
 
+
+
+function wpl_sm_help()
+{
+?>
+  <h3>[wpl_sm] help</h3>
+  <code>
+    $atts = [
+      'no_icon'            => '', // Whether to display the icon or not.<br/>
+      'for'                => '', // The name to be displayed.<br/>
+      'icon'               => '', // The custom icon to be displayed.<br/>
+      'extra_icon_class'   => '', // The extra class for the icon.<br/>
+      'platform'           => '' // The platform for the social media.<br/>
+    ];<br/><br/>
+    wpl_sm($atts);<br/>
+  </code><br/><br/>
+  <p>Generate the function comment for the given function body.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <ul>
+    <li><code>$atts['no_icon']</code> (string) - Whether to display the icon or not.</li>
+    <li><code>$atts['for']</code> (string) - The name to be displayed.</li>
+    <li><code>$atts['icon']</code> (string) - The custom icon to be displayed.</li>
+    <li><code>$atts['extra_icon_class']</code> (string) - The extra class for the icon.</li>
+    <li><code>$atts['platform']</code> (string) - The platform for the social media.</li>
+  </ul>
+
+  <p><strong>Throws:</strong></p>
+  <p>Some_Exception_Class - This function may throw a Some_Exception_Class if something goes wrong.</p>
+
+  <p><strong>Returns:</strong></p>
+  <p>The HTML code for the social media link.</p>
+  <p><strong>Use:</strong></p>
+  
+  <ol>
+   <li><strong>Display Social Media Icon:</strong>
+      <pre><code>[wpl_sm for="facebook"]</code></pre>
+   </li>
+
+   <li><strong>Display Custom Icon:</strong>
+      <pre><code>[wpl_sm for="twitter" icon="icon-url"]</code></pre>
+   </li>
+
+   <li><strong>Hide Icon:</strong>
+      <pre><code>[wpl_sm for="instagram" no_icon="true"]</code></pre>
+      <em>This'll display " name: url " instead of icon</em>
+   </li>
+
+   <li><strong>Override Icon Class:</strong>
+      <pre><code>[wpl_sm for="linkedin" extra_icon_class="custom-class"]</code></pre>
+   </li>
+
+   <li><strong>Display Help:</strong>
+      <pre><code>[wpl_sm help='true']</code></pre>
+   </li>
+</ol>
+
+
+
+  
+<?php
+}
 
 
 

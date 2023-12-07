@@ -21,3 +21,14 @@ foreach (WPL_AVAILABLE_FEATURES as $k => $v) {
     ]);
 }
 echo '<hr>';
+
+foreach (WPL_AVAILABLE_OPTIONS as $k => $v) {
+    WPL_FORMBUILDER->field([
+        'type' => $v,
+        'label' => $k,
+        'name' => $k,
+        'id' => $k,
+        'dbval' => !empty(WPL_SETTINGS[$k]) ? WPL_SETTINGS[$k] : '',
+    ]);
+}
+echo '<hr>';

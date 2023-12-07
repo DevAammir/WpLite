@@ -1,6 +1,4 @@
 <?php
-
-
 ////////////////////////////
 ////||UPLOAD LOGO
 ////////////////////////////
@@ -161,15 +159,14 @@ function custom_serach_form()
 
 /* CUSTOM EXCERPT LENGTH */
 
-function custom_excerpt_length($length)
-{
-    return 30; //make this dynamic.
+function custom_excerpt_length($excerpt) {
+    $wpl_excerpt_length = !empty(WPL_SETTINGS['wpl_excerpt_length']) ? WPL_SETTINGS['wpl_excerpt_length'] : 0; 
+    $excerpt = wp_trim_words($excerpt, $wpl_excerpt_length); 
+    $excerpt = preg_replace('/(?:\W|&hellip;)+$/', '', $excerpt);  
+    return $excerpt;
 }
 
-add_filter('excerpt_length', 'custom_excerpt_length');
-
-
-
+add_filter('get_the_excerpt', 'custom_excerpt_length');
 
 
 

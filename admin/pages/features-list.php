@@ -5,5 +5,8 @@
     <li><code>[container][/container]</code></li>
     <li><code>[row][/row]</code></li>
     <li><code>[col][/col] OR [col size='4'][/col]</code></li>
-    <li></li>
+    <li>Pagination</li>
+    <li><code>wpl_related_posts(): </code> For Related Posts</li>
+    <li>Posts View</li>
+    <li>Author Info and Author Page</li>
 </ol>

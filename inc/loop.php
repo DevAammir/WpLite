@@ -12,7 +12,7 @@
                         </div>
                         <div class="col-md-10">
                             <h5 class="pb-2 heading-sm-b"><a href="<?= the_permalink(); ?>" class="the-link"><?php the_title(); ?></a></h5>
-                            <div class="pt-2 pb-2"><?php the_excerpt(); ?></div>
+                            <div class="pt-2 pb-2"><?php echo get_the_excerpt(); ?></div>
                             <?php get_template_part('inc/meta_info'); ?>
                         </div>
                     </div>
