@@ -209,7 +209,21 @@ function wpl_related_posts()
     ?>
             <div id="related-posts-cards" class="row">
                 <div class="col-md-12">
-                    <h3>Related Posts</h3>
+                    <?php
+                    $custom_post_type = get_post_type(); // Replace this with the actual custom post type variable or name
+
+                    $post_type_object = get_post_type_object($custom_post_type);
+
+                    if ($post_type_object) {
+                        $post_type_name = $post_type_object->labels->singular_name;
+                    ?>
+                        <h3>Related <?php echo esc_html($post_type_name); ?></h3>
+                    <?php
+                    } else {
+                    ?>
+
+                        <h3>Related Posts</h3>
+                    <?php } ?>
                 </div>
                 <?php
 

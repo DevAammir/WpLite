@@ -86,6 +86,8 @@ function create_widget($name, $id, $description)
 
 create_widget('Page Sidebar', 'page', 'Appears on the side of pages with a sidebar');
 create_widget('Blog Sidebar', 'blog', 'Displays on the side of pages in the blog section');
+create_widget('Work Sidebar', 'work', 'Displays on the side of pages in the work section');
+create_widget('Service Sidebar', 'service', 'Displays on the side of pages in the service section');
 
 
 create_widget(' Footer 1', 'footer_1', '');
@@ -108,7 +110,7 @@ add_theme_support('post-thumbnails');
  * @throws None
  * @return void
  */
-function mytheme_add_woocommerce_support()
+function wpl_add_woocommerce_support()
 {
     add_theme_support('woocommerce', array(
         'thumbnail_image_width' => 150,
@@ -124,4 +126,4 @@ function mytheme_add_woocommerce_support()
         ),
     ));
 }
-add_action('after_setup_theme', 'mytheme_add_woocommerce_support');
+add_action('after_setup_theme', 'wpl_add_woocommerce_support');

@@ -8,15 +8,11 @@
 
 			<!-- Marketing Icons Section -->
 			<div class="row">
-				<div class="col-md-8">
-					<?php get_template_part('inc/content'); ?>
-				</div>
-				<div class="col-md-4">
-					<?php get_sidebar(); ?>
-				</div>
+			<div class="col-md-4"><?php get_sidebar('service'); ?></div>
+			<div class="col-md-8"><?php get_template_part('inc/content'); ?></div>
 			</div>
 			<div class="row">
-				<p>Post Visits: <strong><?php the_post_views(); ?><strong></p>
+				<p>Visits: <strong><?php the_post_views(); ?><strong></p>
 			</div>
 			<?php echo wpl_related_posts(); ?>
 		</div>

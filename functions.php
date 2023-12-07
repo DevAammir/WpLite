@@ -47,3 +47,8 @@ include_once 'common/form-builder.php';
  **********************/
 include_once 'common/config.php';
 include_once 'admin/admin.php';
+
+/***********************
+ *  CUSTOM FUNCTIONS
+ **********************/
+include_once 'inc/custom_functions.php';
