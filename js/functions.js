@@ -348,7 +348,30 @@ function include_page(page, section) {
         }
     }
 
+    function addClassToElements(selector, ...classNames) {
+        var elements = document.querySelectorAll(selector);
+        if (elements.length > 0) {
+            console.log('Adding classes:', classNames, 'to elements:', elements);
+            elements.forEach(function(element) {
+                element.classList.add(...classNames);
+            });
+            console.log('Classes after addition:', elements[0].classList); // Log classes of the first element
+        } else {
+            console.log('No elements found for selector:', selector);
+        }
+    }
+    
     document.addEventListener('DOMContentLoaded', function () {
         addClassToElement('.woocommerce #primary.content-area', 'container');
-        addClassToElement('input[type="submit"]', 'btn', 'btn-primary');
+        addClassToElements('input[type="submit"]', 'btn', 'btn-primary');
+
+
+        addClassToElement('.woocommerce-MyAccount-navigation ul', 'list-group');
+        addClassToElements('.woocommerce-MyAccount-navigation li a', 'list-group-item');
+        addClassToElements('input[type="text"]', 'form-control');
+        addClassToElements('input[type="email"]', 'form-control');
+        addClassToElements('input[type="password"]', 'form-control');
+        addClassToElement('a.components-button.wc-block-components-button.wp-element-button.wc-block-cart__submit-button.contained', 'btn', 'btn-primary');
+        
+        addClassToElements('button[type="button"]', 'btn','btn-primary');
     });

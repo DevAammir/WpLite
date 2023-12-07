@@ -25,3 +25,10 @@ span.page-numbers.current {  color: #FFF;  background: #337ab7;}
 .img-container-270 img, .card-img img{object-fit: cover; height: 100%;}
 .text-normal{text-decoration: none;color:#111;}.text-normal:hover{text-decoration: none;}
 
+
+
+/***
+ ** WOOCOMMERCE 
+**/
+nav.woocommerce-MyAccount-navigation ul {  list-style: none !important;}
+a.components-button.wc-block-components-button.wp-element-button.wc-block-cart__submit-button.contained{color:#fff;background-color:#007bff;display:inline-block;font-weight:400;text-align:center;white-space:nowrap;vertical-align:middle;user-select:none;border:1px solid transparent;padding:.375rem .75rem;font-size:1rem;line-height:1.5;border-radius:.25rem;text-decoration:none;transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out}
