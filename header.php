@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="WPL_AJAX" content="<?php echo WPL_AJAX; ?>">
     <meta name="description" content="<?=(isset(WPL_SETTINGS['site_dsec']) ? WPL_SETTINGS['site_dsec']: '');?>">
 <meta name="author" content="<?=(isset(WPL_SETTINGS['author_desc']) ? WPL_SETTINGS['author_desc']: '');?>">
 <?php if(!is_front_page()){$page_title = wp_title('', false).' | '; }else{$page_title = 'Home | ';}?>
