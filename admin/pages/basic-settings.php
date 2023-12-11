@@ -1,7 +1,7 @@
 <?php
 /*
 foreach (WPL_AVAILABLE_OPTIONS as $key => $value) {
-    WPL_FORMBUILDER->field([
+    FORMBUILDER->field([
         'type' => 'checkbox',
         'label' => $value,
         'name' => $key,
@@ -12,7 +12,7 @@ foreach (WPL_AVAILABLE_OPTIONS as $key => $value) {
 echo '<hr>';
 */
 foreach (WPL_AVAILABLE_FEATURES as $k => $v) {
-    WPL_FORMBUILDER->field([
+    FORMBUILDER->field([
         'type' => $v,
         'label' => $k,
         'name' => $k,
@@ -23,7 +23,7 @@ foreach (WPL_AVAILABLE_FEATURES as $k => $v) {
 echo '<hr>';
 
 foreach (WPL_AVAILABLE_OPTIONS as $k => $v) {
-    WPL_FORMBUILDER->field([
+    FORMBUILDER->field([
         'type' => $v,
         'label' => $k,
         'name' => $k,

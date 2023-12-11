@@ -1,7 +1,7 @@
     <?php
     foreach (WPL_SOCIAL_MEDIA_PLATFORMS as $key => $value) :
 
-        WPL_FORMBUILDER->field([
+        FORMBUILDER->field([
             'type' => 'text',
             'label' => $key,
             'name' => 'sm_' . $value,

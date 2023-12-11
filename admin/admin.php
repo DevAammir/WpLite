@@ -62,7 +62,7 @@ function wpl_admin_page()
                 <p>This is the content for tab 3.</p>
             </div> -->
             <?php
-            WPL_FORMBUILDER->field([
+            FORMBUILDER->field([
                 'type' => 'button',
                 'label' => 'Save Settings',
                 'name' => 'wpl_save_settings',

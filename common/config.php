@@ -44,7 +44,7 @@ define('WPL_AVAILABLE_OPTIONS', $available_options_array);
 define('WPL_AVAILABLE_FEATURES', $theme_features_array);
 
 $fb = new FormBuilder();
-define('WPL_FORMBUILDER', $fb);
+define('FORMBUILDER', $fb);
 
 $wpl_settings = get_option('wpl_settings');
 $wpl_socialmedia = get_option('wpl_socialmedia');
