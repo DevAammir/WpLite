@@ -36,9 +36,22 @@ $theme_features_array = [
     'author_desc' => 'textarea',
 ];
 
+$theme_support_array['widgets'] =  [
+    'Header' => 'header', 
+    'Page Sidebar' => 'page', 
+    'Blog Sidebar' => 'blog', 
+    'Footer One' => 'footer_1', 
+    'Footer Two' => 'footer_2',
+    'Footer Three' => 'footer_3',
+    'Footer Four' => 'footer_4'
+];
+$theme_support_array['nav_menu'] =  [
+    'Primary Menu' => 'primary_menu', 
+    'Secondary Menu' => 'secondary_menu', 
+    'Footer Menu' => 'footer_menu'
+];
 
- 
-
+// $theme_support_array['cpts'] = [];
 
 define('WPL_AVAILABLE_OPTIONS', $available_options_array);
 define('WPL_AVAILABLE_FEATURES', $theme_features_array);
@@ -51,3 +64,6 @@ $wpl_socialmedia = get_option('wpl_socialmedia');
 
 define('WPL_SETTINGS', $wpl_settings);
 define('WPL_SOCIALMEDIA', $wpl_socialmedia); 
+
+
+define('WPL_THEME_SUPPORT_OPTIONS',$theme_support_array);
