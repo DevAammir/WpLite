@@ -50,7 +50,7 @@
                     <?php wp_nav_menu($args); ?>  
         </div>
         <div class="ml-auto pl-2">
-          <?php dynamic_sidebar('header_widget'); ?>
+          <?php dynamic_sidebar('header'); ?>
         </div>
       </div>
     </nav>    
