@@ -26,7 +26,7 @@ $available_options_array = [
 
 
 $theme_features_array = [
-    'logo' => 'wp_upload',
+    'site_logo' => 'wp_upload',
     // 'logo_max-width' => 'text',
     // 'logo_max-height' => 'text',
     'favicon' => 'wp_upload',

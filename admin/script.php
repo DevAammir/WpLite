@@ -4,12 +4,13 @@
 
     (function($) {
         $(document).ready(function() {
-            console.log('Welcome to WordPress Toolkit!');
+            // console.log('Welcome to WordPress Toolkit!');
 
             $(document).on('click', '#wpl_save_settings', function(e) {
                 e.preventDefault();
+                debugger;
                 let form_data = $('#wpl_save_settings_form').serialize();
-                console.log(form_data);
+                //console.log(form_data);
 
                 _AJAX_function_1('#target', admin_ajax_url, 'wpl_save_settings', 'POST', form_data, 'json');
                 

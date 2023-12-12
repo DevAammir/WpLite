@@ -1,4 +1,4 @@
-console.log('HELLO & WELCOME TO functions.');
+// console.log('HELLO & WELCOME TO functions.js from wpl');
 /**************************************
  * Universal Functions 
  **************************************/
@@ -126,7 +126,7 @@ function clone_html(to_clone) {
         let theInputs = newElement.querySelectorAll('input');
         theInputs.forEach(input => input.value = "");
     } else {
-        console.error('No element found with class:', to_clone);
+        // console.error('No element found with class:', to_clone);
     }
 }
 
@@ -191,18 +191,18 @@ function _AJAX_function_1(target, admin_ajax_url, action, type, data, data_type)
         beforeSend: function (xhr) {
             // debugger;
             setTimeout(() => {
-                $(target).html('<div id="loading"> Please wait... </div>');
-                $(target).find('div').attr('id', 'loader').show();
-                $('input').attr('disabled', 'disabled');
+                jQuery(target).html('<div id="loading"> Please wait... </div>');
+                jQuery(target).find('div').attr('id', 'loader').show();
+                // jQuery('input').attr('disabled', 'disabled');
             }, 1000);
         },
     }).done(function (response) {
 
-        if (response.status == 200) {
-            $('input').attr('disabled', false);
-            $(target).html(response.result);
+        if (response.status === 200) {
+            // jQuery('input').attr('disabled', false);
+            jQuery(target).html(response.result);
         } else {
-            $(target).html('<div class="error">' + response.message + "</div>");
+            jQuery(target).html('<div class="message">' + response.result + "</div>");
         }
     }); //ajax done
 }
@@ -300,7 +300,7 @@ function include_page(page, section) {
  * 'clone_remove_this', but only if there is more than one such element in the document.
  */
 (function cloneAndRemove() {
-    console.log('HELP:: parent: .clone_remove_this, add_remove: .clone_trigger, .remove_trigger');
+    // console.log('HELP:: parent: .clone_remove_this, add_remove: .clone_trigger, .remove_trigger');
 
     document.addEventListener('click', function (event) {
         var target = event.target;
@@ -342,22 +342,22 @@ function include_page(page, section) {
         if (element) {
             console.log('Adding classes:', classNames, 'to element:', element);
             element.classList.add(...classNames);
-            console.log('Classes after addition:', element.classList);
+            // console.log('Classes after addition:', element.classList);
         } else {
-            console.log('Element not found for selector:', selector);
+            // console.log('Element not found for selector:', selector);
         }
     }
 
     function addClassToElements(selector, ...classNames) {
         var elements = document.querySelectorAll(selector);
         if (elements.length > 0) {
-            console.log('Adding classes:', classNames, 'to elements:', elements);
+            // console.log('Adding classes:', classNames, 'to elements:', elements);
             elements.forEach(function(element) {
                 element.classList.add(...classNames);
             });
-            console.log('Classes after addition:', elements[0].classList); // Log classes of the first element
+            // console.log('Classes after addition:', elements[0].classList); // Log classes of the first element
         } else {
-            console.log('No elements found for selector:', selector);
+            // console.log('No elements found for selector:', selector);
         }
     }
     

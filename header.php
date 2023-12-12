@@ -20,7 +20,7 @@
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
       <a href="<?= site_url(); ?>" class="navbar-brand">
-       <img src="<?php echo isset(WPL_SETTINGS['logo'])?WPL_SETTINGS['logo']:''; ?>" alt="<?php bloginfo('name'); ?>" class="img-fluid logo"/>
+       <img src="<?php echo isset(WPL_SETTINGS['site_logo'])?WPL_SETTINGS['site_logo']:''; ?>" alt="<?php bloginfo('name'); ?>" class="img-fluid logo"/>
       </a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -48,6 +48,9 @@
                     );
                     ?>
                     <?php wp_nav_menu($args); ?>  
+        </div>
+        <div class="ml-auto pl-2">
+          <?php dynamic_sidebar('header_widget'); ?>
         </div>
       </div>
     </nav>    

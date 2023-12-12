@@ -3,15 +3,15 @@
         <div class="container">
             <div class="row">
 
-                <div class="col-md-5 footer-info">
+                <div class="col-md-3 footer-info">
                     <?php dynamic_sidebar('footer_1'); ?>
                 </div>
 
-                <div class="col-lg-2 col-md-6 footer-links">
+                <div class="col-md-3 footer-links">
                     <?php dynamic_sidebar('footer_2'); ?>
                 </div>
 
-                <div class="col-md-2 footer-links">
+                <div class="col-md-3 footer-links">
                     <?php dynamic_sidebar('footer_3'); ?>
                 </div>
                 <div class="col-md-3 footer-contact text-white">

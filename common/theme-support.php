@@ -86,8 +86,8 @@ function create_widget($name, $id, $description)
 
 create_widget('Page Sidebar', 'page', 'Appears on the side of pages with a sidebar');
 create_widget('Blog Sidebar', 'blog', 'Displays on the side of pages in the blog section');
-create_widget('Work Sidebar', 'work', 'Displays on the side of pages in the work section');
-create_widget('Service Sidebar', 'service', 'Displays on the side of pages in the service section');
+// create_widget('Work Sidebar', 'work', 'Displays on the side of pages in the work section');
+// create_widget('Service Sidebar', 'service', 'Displays on the side of pages in the service section');
 
 
 create_widget(' Footer 1', 'footer_1', '');
@@ -95,8 +95,7 @@ create_widget(' Footer 2', 'footer_2', '');
 create_widget(' Footer 3', 'footer_3', '');
 create_widget(' Footer 4', 'footer_4', '');
 
-/* Disable WordPress Admin Bar for all users but admins. */
-add_filter('show_admin_bar', '__return_false');
+create_widget('Header', 'header_widget', '');
 
 /* * *********
  * ADDING FEATURED IMAGE THEME SUPPORT
