@@ -6,7 +6,7 @@ function wpl_search_form()
 {
     ob_start(); ?>
     <form class="form-inline" action="<?php echo esc_url(home_url('/')); ?>">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" name="s" value="<?php echo get_search_query(); ?>">
         <button class="btn btn-success" type="submit">Search</button>
     </form>
 <?php $html = ob_get_clean();

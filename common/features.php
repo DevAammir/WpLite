@@ -147,7 +147,7 @@ function wplight_pagination()
 function custom_serach_form()
 {
     ?>
-    <form role="search" method="get" class="search-form" action="<?php echo home_url('/'); ?>">
+    <form role="search" method="get" class="search-form wpl-search-form" action="<?php echo home_url('/'); ?>">
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Type Something...." value="<?php echo get_search_query() ?>" name="s">
             <div class="input-group-append">
